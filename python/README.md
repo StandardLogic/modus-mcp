@@ -1,6 +1,6 @@
-# modei-sdk
+# modei-python
 
-[![PyPI version](https://img.shields.io/pypi/v/modei-sdk)](https://pypi.org/project/modei-sdk/)
+[![PyPI version](https://img.shields.io/pypi/v/modei-python)](https://pypi.org/project/modei-python/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 
 Python SDK for the [Modei](https://modei.ai) REST API. Manage agent passports, gates, and enforcement policies programmatically.
@@ -12,7 +12,7 @@ The MCP server (for Claude Desktop, Cursor, etc.) is the separate TypeScript pac
 ## Installation
 
 ```bash
-pip install modei-sdk
+pip install modei-python
 ```
 
 ---

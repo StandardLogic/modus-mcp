@@ -3,7 +3,7 @@ requires = ["hatchling"]
 build-backend = "hatchling.build"
 
 [project]
-name = "modei-sdk"
+name = "modei-python"
 version = "1.0.0"
 description = "Python SDK for the Modei REST API — manage agent passports, gates, and enforcement policies."
 readme = "README.md"

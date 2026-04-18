@@ -2,7 +2,7 @@
 Modei Realtime Adapter (Python)
 
 Handles Supabase Realtime connection for agent presence and verification.
-This module is opt-in: install with `pip install modei-sdk[realtime]`.
+This module is opt-in: install with `pip install modei-python[realtime]`.
 
 Features:
 - Exchange passport for short-lived Realtime JWT
@@ -31,7 +31,7 @@ try:
 except ImportError:
     raise ImportError(
         "Realtime support requires additional dependencies. "
-        "Install with: pip install modei-sdk[realtime]"
+        "Install with: pip install modei-python[realtime]"
     )
 
 VERSION = "1.0.0"
@@ -162,7 +162,7 @@ class RealtimeAdapter:
             "agent_id": self.credentials.agent_id,
             "passport_id": self.credentials.passport_id,
             "passport_fingerprint": self.credentials.passport_fingerprint,
-            "sdk": "modei-sdk",
+            "sdk": "modei-python",
             "sdk_version": VERSION,
             "runtime": "python",
             "env": os.environ.get("MODEI_ENV", "development"),
@@ -204,7 +204,7 @@ class RealtimeAdapter:
                         "timestamp": time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime()),
                         "uptime_seconds": int(time.monotonic()),
                         "passport_fingerprint": self.credentials.passport_fingerprint,
-                        "sdk_version": f"modei-sdk@{VERSION}",
+                        "sdk_version": f"modei-python@{VERSION}",
                         "signature": signature,
                     },
                 )
@@ -253,7 +253,7 @@ async def send_heartbeat(
                 },
                 json={
                     "passport_id": passport_id,
-                    "sdk": "modei-sdk",
+                    "sdk": "modei-python",
                     "sdk_version": sdk_version,
                     "runtime": runtime,
                     "env": env,
