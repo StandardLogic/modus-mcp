@@ -1,4 +1,4 @@
-"""Asynchronous Modus client using httpx."""
+"""Asynchronous Modei client using httpx."""
 
 from __future__ import annotations
 
@@ -44,12 +44,12 @@ from .types import (
 )
 
 
-class AsyncModusClient:
-    """Asynchronous client for the Modus REST API.
+class AsyncModeiClient:
+    """Asynchronous client for the Modei REST API.
 
     Args:
-        api_key: Modus API key (e.g. ``mod_live_xxx``).
-        base_url: API base URL. Defaults to ``https://modustrust.ai``.
+        api_key: Modei API key (e.g. ``mod_live_xxx``).
+        base_url: API base URL. Defaults to ``https://modei.ai``.
         timeout: Request timeout in seconds. Defaults to 30.
     """
 
@@ -72,7 +72,7 @@ class AsyncModusClient:
         """Close the underlying HTTP client."""
         await self._client.aclose()
 
-    async def __aenter__(self) -> AsyncModusClient:
+    async def __aenter__(self) -> AsyncModeiClient:
         return self
 
     async def __aexit__(self, *args: Any) -> None:
