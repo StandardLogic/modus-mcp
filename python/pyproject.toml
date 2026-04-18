@@ -10,7 +10,7 @@ readme = "README.md"
 license = "MIT"
 requires-python = ">=3.9"
 authors = [
-    { name = "Standard Logic Co.", email = "support@modeioperator.com" },
+    { name = "Standard Logic Co.", email = "support@modei.ai" },
 ]
 keywords = [
     "modei",
@@ -50,8 +50,8 @@ dev = [
 ]
 
 [project.urls]
-Homepage = "https://modeioperator.com"
-Documentation = "https://modeioperator.com/guide"
+Homepage = "https://modei.ai"
+Documentation = "https://modei.ai/guide"
 Repository = "https://github.com/StandardLogic/modei-mcp"
 
 [tool.pytest.ini_options]

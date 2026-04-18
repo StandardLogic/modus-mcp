@@ -49,7 +49,7 @@ class AsyncModeiClient:
 
     Args:
         api_key: Modei API key (e.g. ``mod_live_xxx``).
-        base_url: API base URL. Defaults to ``https://modeioperator.com``.
+        base_url: API base URL. Defaults to ``https://modei.ai``.
         timeout: Request timeout in seconds. Defaults to 30.
     """
 

@@ -17,7 +17,7 @@ from modei.exceptions import (
     ValidationError,
 )
 
-BASE_URL = "https://modeioperator.com"
+BASE_URL = "https://modei.ai"
 API_KEY = "mod_test_xxx"
 
 

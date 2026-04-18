@@ -23,7 +23,7 @@ import { allTools, handleToolCall } from './tools/index.js';
 import { createRealtimeAdapter, computeFingerprint, type RealtimeConfig, type AgentCredentials } from './realtime.js';
 
 // Configuration from environment
-const MODEI_API_URL = process.env.MODEI_API_URL || 'https://modeioperator.com';
+const MODEI_API_URL = process.env.MODEI_API_URL || 'https://modei.ai';
 const MODEI_API_KEY = process.env.MODEI_API_KEY;
 
 // Realtime configuration (opt-in)

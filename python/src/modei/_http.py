@@ -16,7 +16,7 @@ from .exceptions import (
     ValidationError,
 )
 
-DEFAULT_BASE_URL = "https://modeioperator.com"
+DEFAULT_BASE_URL = "https://modei.ai"
 DEFAULT_TIMEOUT = 30.0
 
 

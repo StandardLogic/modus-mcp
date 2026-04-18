@@ -6,13 +6,13 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 [![MCP Compatible](https://img.shields.io/badge/MCP-compatible-green)](https://modelcontextprotocol.io)
 
-MCP server for managing [Modei](https://modeioperator.com) agent governance infrastructure — passports, gates, constraints, enforcement, and audit — directly from Claude, Cursor, or any MCP client.
+MCP server for managing [Modei](https://modei.ai) agent governance infrastructure — passports, gates, constraints, enforcement, and audit — directly from Claude, Cursor, or any MCP client.
 
 ---
 
 ## What is Modei?
 
-[Modei](https://modeioperator.com) is the trust layer for AI agents. It has two sides:
+[Modei](https://modei.ai) is the trust layer for AI agents. It has two sides:
 
 **Gates** protect your tools, APIs, and MCP servers. A Gate is a verification checkpoint — you define a permission catalog of what's allowed, and incoming agent requests are checked against it locally, with no network round-trip. Every decision produces a signed attestation for a tamper-evident audit trail.
 
@@ -25,7 +25,7 @@ This MCP server lets you manage both sides conversationally from any MCP client.
 
 ## Prerequisites
 
-- A **Modei account** — sign up at the [Modei Dashboard](https://modeioperator.com)
+- A **Modei account** — sign up at the [Modei Dashboard](https://modei.ai)
 - **Claude Desktop**, **Claude Code**, **Cursor**, or any MCP-compatible client
 - An **API key** — generate one from the dashboard
 
@@ -176,7 +176,7 @@ Restart your client and you're ready to go.
 | Variable | Required | Default | Description |
 |----------|----------|---------|-------------|
 | `MODEI_API_KEY` | Yes | — | Your Modei API key (`mod_live_*` or `mod_test_*`) |
-| `MODEI_API_URL` | No | `https://modeioperator.com` | API base URL (override for local dev) |
+| `MODEI_API_URL` | No | `https://modei.ai` | API base URL (override for local dev) |
 
 ---
 
@@ -216,8 +216,8 @@ Run `npx modei-mcp` directly in your terminal to check for startup errors. Ensur
 
 ## Learn More
 
-- [Modei Dashboard](https://modeioperator.com) — Create your account and manage gates, passports, and API keys
-- [Documentation & Guides](https://modeioperator.com)
+- [Modei Dashboard](https://modei.ai) — Create your account and manage gates, passports, and API keys
+- [Documentation & Guides](https://modei.ai)
 - [MCP SDK (TypeScript)](https://www.npmjs.com/package/modei-mcp-sdk) · [MCP SDK (Python)](https://pypi.org/project/modei-mcp-sdk/)
 - [Management SDK (Python)](https://pypi.org/project/modei-mcp/)
 - [Discussions](https://github.com/StandardLogic/modei-mcp/discussions) — Questions and ideas

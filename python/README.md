@@ -3,7 +3,7 @@
 [![PyPI version](https://img.shields.io/pypi/v/modei-sdk)](https://pypi.org/project/modei-sdk/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 
-Python SDK for the [Modei](https://modeioperator.com) REST API. Manage agent passports, gates, and enforcement policies programmatically.
+Python SDK for the [Modei](https://modei.ai) REST API. Manage agent passports, gates, and enforcement policies programmatically.
 
 The MCP server (for Claude Desktop, Cursor, etc.) is the separate TypeScript package: [modei-mcp on npm](https://www.npmjs.com/package/modei-mcp).
 
@@ -244,7 +244,7 @@ except ModeiError as e:
 | Variable | Required | Default | Description |
 |----------|----------|---------|-------------|
 | `MODEI_API_KEY` | Yes | — | Your Modei API key |
-| `MODEI_API_URL` | No | `https://modeioperator.com` | API base URL (override for local dev) |
+| `MODEI_API_URL` | No | `https://modei.ai` | API base URL (override for local dev) |
 
 You can also pass these directly to the client:
 
@@ -256,7 +256,7 @@ client = ModeiClient(api_key="mod_live_xxx", base_url="http://localhost:3000")
 
 ## Documentation
 
-Full documentation at [modeioperator.com/docs](https://modeioperator.com/docs)
+Full documentation at [modei.ai/docs](https://modei.ai/docs)
 
 ---
 
