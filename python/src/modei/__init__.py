@@ -17,6 +17,16 @@ from .exceptions import (
     RateLimitError,
     ValidationError,
 )
+from .passport import (
+    AgentCredentials,
+    ChainVerifyResult,
+    DelegationBuilder,
+    Envelope,
+    PassportIssuer,
+    PassportVerifier,
+    SignedPassport,
+    TrustTier,
+)
 from .types import (
     AgentPoP,
     AnonymousPolicy,
@@ -112,6 +122,15 @@ __all__ = [
     "CheckResult",
     "ReissueResult",
     "VerifyResult",
+    # Spec 2 — Self-issued passports (see modei.passport for full surface).
+    "AgentCredentials",
+    "ChainVerifyResult",
+    "DelegationBuilder",
+    "Envelope",
+    "PassportIssuer",
+    "PassportVerifier",
+    "SignedPassport",
+    "TrustTier",
 ]
 
-__version__ = "1.0.0"
+__version__ = "1.1.0a1"

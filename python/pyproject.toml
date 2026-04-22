@@ -4,8 +4,8 @@ build-backend = "hatchling.build"
 
 [project]
 name = "modei-python"
-version = "1.0.0"
-description = "Python SDK for the Modei REST API — manage agent passports, gates, and enforcement policies."
+version = "1.1.0a1"
+description = "Python SDK for the Modei REST API and self-issued passport workflows."
 readme = "README.md"
 license = "MIT"
 requires-python = ">=3.9"
@@ -36,7 +36,10 @@ dependencies = [
     "httpx>=0.25.0",
     "pydantic>=2.0.0",
     "pynacl>=1.5.0",
-    "canonicaljson>=2.0.0",
+    # Exact pin: cross-SDK byte-parity with backend's json-canonicalize@2.0.0
+    # is a release invariant (spec §11.2). Canonicalizer upgrade is a
+    # coordinated cross-stack change; do not loosen this pin.
+    "jcs==0.2.1",
 ]
 
 [project.optional-dependencies]
@@ -52,7 +55,7 @@ dev = [
 [project.urls]
 Homepage = "https://modei.ai"
 Documentation = "https://modei.ai/guide"
-Repository = "https://github.com/StandardLogic/modei-mcp"
+Repository = "https://github.com/StandardLogic/modei-sdk"
 
 [tool.pytest.ini_options]
 asyncio_mode = "auto"
