@@ -3,16 +3,21 @@
 TypeScript SDK for [Modei](https://modei.ai) — trust infrastructure for
 AI agents. Pronounced "Mo-dee".
 
-> **Status:** `1.0.0-rc.1` — release candidate. Install with
-> `npm install modei-typescript@next`. Promotes to `1.0.0` at prod cutover.
+> **Status:** `1.0.0-rc.1` — release candidate. Promotes to `1.0.0` at
+> prod cutover.
 
 ## Install
 
 ```bash
+npm install modei-typescript
+# or pin the RC explicitly:
+npm install modei-typescript@1.0.0-rc.1
+# or use the `next` dist-tag:
 npm install modei-typescript@next
-# or
-pnpm add modei-typescript@next
 ```
+
+All three install the same version while `1.0.0-rc.1` is the only
+published release.
 
 Requires Node.js ≥ 18. Dual ESM + CJS: both `import` and `require` are
 supported with per-mode types.

@@ -80,11 +80,37 @@ Documented, not bugs. See module TSDoc for each:
   change requiring the RFC 8785 fixture suite to pass.
 - `zod@^3.23.0` — runtime validation at envelope + credential-file boundaries.
 
+### Staging verification
+
+Deferred. Staging test file `__tests__/staging-roundtrip.test.ts` lands
+in this commit (env-gated, skips cleanly when `MODEI_STAGING_URL` is unset).
+Live staging run deferred to a separate step in the prod cutover window —
+rows 1, 2, 3, 21 expected to pass; row 10 pinned as skipped per the
+`/check` auth-bypass gap documented in the C19.7b commit message.
+
+### Published
+
+- **npm:** `modei-typescript@1.0.0-rc.1`, published 2026-04-23 to
+  `registry.npmjs.org`. 110 files, 91.8 kB packed, 341.3 kB unpacked.
+  Shasum `548ce77e9098ca1a63827a1223065edcb8c0e039`.
+- Install: `npm install modei-typescript@next`.
+- Both `next` and `latest` dist-tags point at `1.0.0-rc.1` (npm's
+  first-publish policy auto-sets `latest` and blocks removal while
+  only one version exists in the registry). When `1.0.0` ships,
+  `latest` will move via `npm dist-tag add modei-typescript@1.0.0
+  latest`; `next` will retire or point at future RCs.
+- `npm install modei-typescript` and `npm install modei-typescript@next`
+  both install `1.0.0-rc.1` — they resolve identically while the RC
+  is the only published version.
+- Known ergonomic gap: `require('modei-typescript/package.json')` returns
+  `ERR_PACKAGE_PATH_NOT_EXPORTED` due to strict exports map. Runtime
+  version introspection via that path is not supported. Tracked for C21.
+
 ## [1.0.0] — TBD
 
-Production release. Promotes `1.0.0-rc.1` unchanged pending staging
-round-trip sign-off + npm dist-tag move from `next` to `latest`. No API
-changes between RC and GA.
+Production release. Promotes `1.0.0-rc.1` unchanged pending npm dist-tag
+move of `latest` to `1.0.0` (`next` retires or re-points at future RCs).
+No API changes between RC and GA.
 
 [Unreleased]: https://github.com/StandardLogic/modei-sdk/compare/v1.0.0-rc.1...HEAD
 [1.0.0-rc.1]: https://github.com/StandardLogic/modei-sdk/releases/tag/v1.0.0-rc.1
