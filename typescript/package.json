@@ -1,0 +1,98 @@
+{
+  "name": "modei-typescript",
+  "version": "1.0.0-rc.1",
+  "description": "TypeScript SDK for the Modei REST API and self-issued passport workflows.",
+  "license": "MIT",
+  "author": "Standard Logic Co. <support@modei.ai>",
+  "homepage": "https://modei.ai",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/StandardLogic/modei-sdk.git",
+    "directory": "typescript"
+  },
+  "bugs": {
+    "url": "https://github.com/StandardLogic/modei-sdk/issues"
+  },
+  "keywords": [
+    "modei",
+    "ai-agents",
+    "permissions",
+    "passports",
+    "trust",
+    "mcp"
+  ],
+  "type": "module",
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "import": {
+        "types": "./dist/index.d.ts",
+        "default": "./dist/index.js"
+      },
+      "require": {
+        "types": "./dist/index.d.cts",
+        "default": "./dist/index.cjs"
+      }
+    },
+    "./passport/canonical": {
+      "import": {
+        "types": "./dist/passport/canonical.d.ts",
+        "default": "./dist/passport/canonical.js"
+      },
+      "require": {
+        "types": "./dist/passport/canonical.d.cts",
+        "default": "./dist/passport/canonical.cjs"
+      }
+    },
+    "./passport/reasons": {
+      "import": {
+        "types": "./dist/passport/reasons.d.ts",
+        "default": "./dist/passport/reasons.js"
+      },
+      "require": {
+        "types": "./dist/passport/reasons.d.cts",
+        "default": "./dist/passport/reasons.cjs"
+      }
+    }
+  },
+  "files": [
+    "dist",
+    "README.md",
+    "LICENSE"
+  ],
+  "scripts": {
+    "build": "tsup",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "lint": "eslint .",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
+    "typecheck": "tsc --noEmit -p tsconfig.typecheck.json",
+    "clean": "rm -rf dist coverage"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "pnpm": {
+    "onlyBuiltDependencies": ["esbuild"]
+  },
+  "dependencies": {
+    "@noble/ed25519": "^3.0.0",
+    "@noble/hashes": "^2.0.1",
+    "json-canonicalize": "2.0.0",
+    "zod": "^3.23.0"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.15.0",
+    "@types/node": "^20.10.0",
+    "@vitest/coverage-v8": "^2.1.0",
+    "eslint": "^9.15.0",
+    "prettier": "^3.3.0",
+    "tsup": "^8.3.0",
+    "typescript": "^5.3.0",
+    "typescript-eslint": "^8.15.0",
+    "vitest": "^2.1.0"
+  }
+}

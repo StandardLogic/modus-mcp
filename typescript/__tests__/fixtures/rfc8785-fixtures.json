@@ -1,0 +1,147 @@
+[
+  {
+    "name": "neg_zero",
+    "description": "RFC 8785 §3.2.2.3 — negative zero serializes to '0'",
+    "input": -0,
+    "expected_canonical_bytes_hex": "30"
+  },
+  {
+    "name": "pos_zero",
+    "description": "Sanity: positive zero serializes to '0'",
+    "input": 0,
+    "expected_canonical_bytes_hex": "30"
+  },
+  {
+    "name": "int_two_to_53",
+    "description": "2^53 — last integer exactly representable as IEEE 754 double",
+    "input": 9007199254740992,
+    "expected_canonical_bytes_hex": "39303037313939323534373430393932"
+  },
+  {
+    "name": "int_two_to_53_plus_1",
+    "description": "2^53 + 1 — first integer NOT exactly representable as double. Both canonicalizers parse input and coerce to nearest representable value (2^53) before serialization. Deterministic lost-precision behavior.",
+    "input": 9007199254740993,
+    "expected_canonical_bytes_hex": "39303037313939323534373430393932"
+  },
+  {
+    "name": "large_sci_1e100",
+    "description": "Large scientific notation: 1e+100",
+    "input": 1e100,
+    "expected_canonical_bytes_hex": "31652b313030"
+  },
+  {
+    "name": "small_sci_1_5e_neg10",
+    "description": "Small scientific notation: 1.5e-10",
+    "input": 1.5e-10,
+    "expected_canonical_bytes_hex": "312e35652d3130"
+  },
+  {
+    "name": "float_add_0_1_plus_0_2",
+    "description": "Classic float-add result: 0.1 + 0.2 = 0.30000000000000004 across IEEE 754 runtimes",
+    "input": 0.30000000000000004,
+    "expected_canonical_bytes_hex": "302e3330303030303030303030303030303034"
+  },
+  {
+    "name": "dup_key_last_wins",
+    "description": "RFC 8785 §3.2.2.2 + JSON parse semantics: duplicate keys collapse to last value. Input is pre-parsed object.",
+    "input": { "a": 2 },
+    "input_note": "Source was JSON string '{\"a\":1,\"a\":2}'; both JSON.parse (JS) and json.loads (Python) keep the last occurrence, yielding {a:2}.",
+    "expected_canonical_bytes_hex": "7b2261223a327d"
+  },
+  {
+    "name": "nfc_key_cafe_composed",
+    "description": "Unicode NFC: key 'café' with composed é (U+00E9, UTF-8: c3 a9). RFC 8785 §3.2.3 forbids normalization.",
+    "input": { "caf\u00e9": 1 },
+    "expected_canonical_bytes_hex": "7b22636166c3a9223a317d"
+  },
+  {
+    "name": "nfd_key_cafe_decomposed",
+    "description": "Unicode NFD: key 'café' as 'e' + combining acute (U+0301, UTF-8 bytes cc 81). Must be byte-distinct from NFC.",
+    "input": { "cafe\u0301": 1 },
+    "expected_canonical_bytes_hex": "7b2263616665cc81223a317d"
+  },
+  {
+    "name": "empty_key_first",
+    "description": "Empty-string key sorts before 'a' lexicographically.",
+    "input": { "": 1, "a": 2 },
+    "expected_canonical_bytes_hex": "7b22223a312c2261223a327d"
+  },
+  {
+    "name": "sort_basic_ba",
+    "description": "Basic key sort: {b,a} serializes as {a,b}.",
+    "input": { "b": 1, "a": 2 },
+    "expected_canonical_bytes_hex": "7b2261223a322c2262223a317d"
+  },
+  {
+    "name": "sort_unicode_utf16",
+    "description": "RFC 8785 §3.2.3: sort is UTF-16 code-unit lexicographic. 'A' (0x41) < 'a' (0x61) < 'z' (0x7A).",
+    "input": { "z": 1, "A": 2, "a": 3 },
+    "expected_canonical_bytes_hex": "7b2241223a322c2261223a332c227a223a317d"
+  },
+  {
+    "name": "mixed_obj_array",
+    "description": "Nested object + array mix with key sort: {a:[], z:[1,{a:2}]}",
+    "input": { "z": [1, { "a": 2 }], "a": [] },
+    "expected_canonical_bytes_hex": "7b2261223a5b5d2c227a223a5b312c7b2261223a327d5d7d"
+  },
+  {
+    "name": "nested_obj_10",
+    "description": "10-level deep object: {x:{x:{...{x:1}...}}}",
+    "input": {"x":{"x":{"x":{"x":{"x":{"x":{"x":{"x":{"x":{"x":1}}}}}}}}}},
+    "expected_canonical_bytes_hex": "7b2278223a7b2278223a7b2278223a7b2278223a7b2278223a7b2278223a7b2278223a7b2278223a7b2278223a7b2278223a317d7d7d7d7d7d7d7d7d7d"
+  },
+  {
+    "name": "nested_arr_10",
+    "description": "10-level deep array wrapping [1]",
+    "input": [[[[[[[[[[[1]]]]]]]]]]],
+    "expected_canonical_bytes_hex": "5b5b5b5b5b5b5b5b5b5b5b315d5d5d5d5d5d5d5d5d5d5d"
+  },
+  {
+    "name": "str_escape_newline_tab_quote_backslash_nul",
+    "description": "String escapes: \\n, \\t, \\\", \\\\, and NUL (\\u0000). RFC 8785 §3.2.2.5 mandates \\uXXXX for control chars.",
+    "input": "line1\nline2\ttab\\back\"quote\u0000",
+    "expected_canonical_bytes_hex": "226c696e65315c6e6c696e65325c747461625c5c6261636b5c2271756f74655c753030303022"
+  },
+  {
+    "name": "emoji_lock",
+    "description": "Emoji 🔒 (U+1F512) — surrogate pair in UTF-16, 4 bytes UTF-8 (f0 9f 94 92). Byte-for-byte preserved.",
+    "input": "\ud83d\udd12",
+    "expected_canonical_bytes_hex": "22f09f949222"
+  },
+  {
+    "name": "cjk_japanese",
+    "description": "CJK '日本語' — 3 chars, 9 UTF-8 bytes. Byte-for-byte preserved.",
+    "input": "日本語",
+    "expected_canonical_bytes_hex": "22e697a5e69cace8aa9e22"
+  },
+  {
+    "name": "null_in_mixed_array",
+    "description": "Mixed array: [{}, [], null, 0, ''] — canonicalizer preserves order and null.",
+    "input": [{}, [], null, 0, ""],
+    "expected_canonical_bytes_hex": "5b7b7d2c5b5d2c6e756c6c2c302c22225d"
+  },
+  {
+    "name": "reject_nan",
+    "description": "RFC 8785 §3.2.2.4: NaN is not a valid JSON number. Canonicalizer MUST reject.",
+    "input": null,
+    "input_is_sentinel": true,
+    "input_sentinel": "NaN",
+    "expected_rejects": true
+  },
+  {
+    "name": "reject_pos_infinity",
+    "description": "RFC 8785 §3.2.2.4: +Infinity is not a valid JSON number. Canonicalizer MUST reject.",
+    "input": null,
+    "input_is_sentinel": true,
+    "input_sentinel": "Infinity",
+    "expected_rejects": true
+  },
+  {
+    "name": "reject_neg_infinity",
+    "description": "RFC 8785 §3.2.2.4: -Infinity is not a valid JSON number. Canonicalizer MUST reject.",
+    "input": null,
+    "input_is_sentinel": true,
+    "input_sentinel": "-Infinity",
+    "expected_rejects": true
+  }
+]
